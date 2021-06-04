@@ -5,6 +5,7 @@ public class Proveedor {
 	private String CIF;
 	private String empresa;
 	private String direccion;
+	private String ciudad;
 	private int telefono;
 	private String email;
 	
@@ -23,6 +24,10 @@ public class Proveedor {
 
 	public String getDireccion() {
 		return direccion;
+	}
+	
+	public String getCiudad() {
+		return ciudad;
 	}
 
 	public int getTelefono() {
@@ -44,6 +49,10 @@ public class Proveedor {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
+	
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
 
 	public void setTelefono(int telefono) {
 		this.telefono = telefono;
@@ -55,8 +64,8 @@ public class Proveedor {
 
 	@Override
 	public String toString() {
-		return "Proveedor [CIF=" + CIF + ", empresa=" + empresa + ", direccion=" + direccion + ", telefono=" + telefono
-				+ ", email=" + email + "]";
+		return "Proveedor [CIF=" + CIF + ", empresa=" + empresa + ", direccion=" + direccion + ", ciudad=" + ciudad
+				+ ", telefono=" + telefono + ", email=" + email + "]";
 	}
 	
 }

@@ -6,6 +6,7 @@ public class Producto {
 	private String modelo;
 	private int medida;
 	private String color;
+	private String familia;
 	
 	public Producto(String marca, String modelo) {
 		this.marca = marca;
@@ -27,6 +28,10 @@ public class Producto {
 	public String getColor() {
 		return color;
 	}
+	
+	public String getFamilia() {
+		return familia;
+	}
 
 	public void setMarca(String marca) {
 		this.marca = marca;
@@ -42,6 +47,10 @@ public class Producto {
 
 	public void setColor(String color) {
 		this.color = color;
+	}
+	
+	public void setFamilia(String familia) {
+		this.familia = familia;
 	}
 
 	@Override

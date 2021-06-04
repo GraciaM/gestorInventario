@@ -4,6 +4,8 @@ public class Producto {
 
 	private String marca;
 	private String modelo;
+	private int medida;
+	private String color;
 	
 	public Producto(String marca, String modelo) {
 		this.marca = marca;
@@ -17,6 +19,14 @@ public class Producto {
 	public String getModelo() {
 		return modelo;
 	}
+	
+	public int getMedida() {
+		return medida;
+	}
+
+	public String getColor() {
+		return color;
+	}
 
 	public void setMarca(String marca) {
 		this.marca = marca;
@@ -26,9 +36,17 @@ public class Producto {
 		this.modelo = modelo;
 	}
 
+	public void setMedida(int medida) {
+		this.medida = medida;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
+
 	@Override
 	public String toString() {
-		return "Producto [marca=" + marca + ", modelo=" + modelo + "]";
+		return "Producto [marca=" + marca + ", modelo=" + modelo + ", medida=" + medida + ", color=" + color + "]";
 	}
 	
 }

@@ -1,4 +1,4 @@
-package Task20;
+package proyectoFinalnventario;
 
 import java.awt.EventQueue;
 
@@ -11,7 +11,7 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
-public class inventario_main {
+public class Gestor_de_Inventario_GUI {
 
 	private JFrame frmGestorDeInventario;
 
@@ -22,7 +22,7 @@ public class inventario_main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					inventario_main window = new inventario_main();
+					Gestor_de_Inventario_GUI window = new Gestor_de_Inventario_GUI();
 					window.frmGestorDeInventario.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -34,7 +34,7 @@ public class inventario_main {
 	/**
 	 * Create the application.
 	 */
-	public inventario_main() {
+	public Gestor_de_Inventario_GUI() {
 		initialize();
 	}
 

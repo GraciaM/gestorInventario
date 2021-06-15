@@ -9,6 +9,9 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.JButton;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.ImageIcon;
 
 public class Gestor_de_Inventario_GUI {
@@ -71,22 +74,49 @@ public class Gestor_de_Inventario_GUI {
 		Título_texto.setForeground(new Color(0, 206, 209));
 		Título_texto.setHorizontalAlignment(SwingConstants.CENTER);
 		Título_texto.setFont(new Font("Tahoma", Font.PLAIN, 80));
-		Título_texto.setBounds(64, 11, 322, 69);
+		Título_texto.setBounds(59, 11, 322, 69);
 		frmGestorDeInventario.getContentPane().add(Título_texto);
 		
 		JButton Registro_boton = new JButton("");
 		Registro_boton.setIcon(new ImageIcon("D:\\FP\\Programaci\u00F3n\\Proyecto_inventario\\Registro.png"));
 		Registro_boton.setBounds(10, 115, 132, 135);
+		Registro_boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Registro rg = new Registro();
+				rg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				rg.setVisible(true);
+				
+				
+			}
+		});
 		frmGestorDeInventario.getContentPane().add(Registro_boton);
 		
 		JButton Consulta_boton = new JButton("");
 		Consulta_boton.setIcon(new ImageIcon("D:\\FP\\Programaci\u00F3n\\Proyecto_inventario\\Consulta.png"));
 		Consulta_boton.setBounds(152, 115, 132, 135);
+		Consulta_boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			Consulta cons = new Consulta();
+			cons.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			cons.setVisible(true);
+			
+			
+		}
+	});
 		frmGestorDeInventario.getContentPane().add(Consulta_boton);
 		
 		JButton Pedidos_boton = new JButton("");
 		Pedidos_boton.setIcon(new ImageIcon("D:\\FP\\Programaci\u00F3n\\Proyecto_inventario\\Pedidos.png"));
 		Pedidos_boton.setBounds(292, 115, 132, 135);
+		Pedidos_boton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			Pedidos ped = new Pedidos();
+			ped.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+			ped.setVisible(true);
+			
+			
+		}
+	});
 		frmGestorDeInventario.getContentPane().add(Pedidos_boton);
 	}
 }

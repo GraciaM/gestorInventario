@@ -6,8 +6,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import java.awt.Toolkit;
 
-public class Pedidos extends JFrame {
+public class Pedidos extends JFrame  {
 
 	private JPanel contentPane;
 
@@ -31,6 +32,8 @@ public class Pedidos extends JFrame {
 	 * Create the frame.
 	 */
 	public Pedidos() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\FP\\Programaci\u00F3n\\Proyecto_inventario\\Pedidos.png"));
+		setTitle("Pedidos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();

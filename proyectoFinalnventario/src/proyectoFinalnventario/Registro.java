@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import javax.swing.JTextField;
 import javax.swing.JList;
 import javax.swing.JMenuBar;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -41,6 +42,7 @@ public class Registro extends JFrame {
 	static Conexion conexion;
 	private JTable table;
 	private DefaultTableModel model = new DefaultTableModel();
+	private JTextField textField;
 
 	/**
 	 * Create the frame.
@@ -64,8 +66,9 @@ public class Registro extends JFrame {
 		Opciones.setBounds(10, 11, 157, 62);
 		contentPane.add(Opciones);
 		Opciones.addItem("Proveedor");
-		Opciones.addItem("Producto");
+		Opciones.addItem("Pieza");
 		Opciones.addItem("Electrodomestico");
+		Opciones.addItem("Producto");
 		Opciones.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				try {
@@ -73,15 +76,17 @@ public class Registro extends JFrame {
 					case "Proveedor":
 						mostrarEnInterfaz("proveedor");
 						break;
-					case "Producto":
-						mostrarEnInterfaz("producto");
+					case "Pieza":
+						mostrarEnInterfaz("pieza");
 						break;
 					case "Electrodomestico":
 						mostrarEnInterfaz("familia");
 						break;
+					case "Producto":
+						mostrarEnInterfaz("pieza_pertenece_Producto");
+						break;
 					}
 				} catch (SQLException e) {
-// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -98,42 +103,56 @@ public class Registro extends JFrame {
 		JButton Insertar = new JButton("Insertar");
 		Insertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
+				switch (Opciones.getSelectedItem().toString()) {
+				case "Proveedor":
+					Insertar_Proveedor insertarPro = new Insertar_Proveedor();
+					insertarPro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					insertarPro.setVisible(true);
+					break;
+				case "Pieza":
+					Insertar_Pieza insertarProd = new Insertar_Pieza();
+					insertarProd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					insertarProd.setVisible(true);
+					break;
+				}
+				
 			}
 		});
 		Insertar.setBounds(318, 13, 287, 60);
 		contentPane.add(Insertar);
+		
+		
 	}
 
 	public void mostrarEnInterfaz(String tabla) throws SQLException {
 		ResultSet res = conexion.mostrarTabla(tabla);
 
-// POR METADATOS
+		// POR METADATOS
 		ResultSetMetaData metaDatos = res.getMetaData();
-// Se obtiene el número de columnas.
+		// Se obtiene el número de columnas.
 		int numeroColumnas = metaDatos.getColumnCount();
 
-// Se crea un array de etiquetas para rellenar
+		// Se crea un array de etiquetas para rellenar
 		Object[] etiquetas = new Object[numeroColumnas];
 
-// Se obtiene cada una de las etiquetas para cada columna
+		// Se obtiene cada una de las etiquetas para cada columna
 		for (int i = 0; i < numeroColumnas; i++) {
 			etiquetas[i] = metaDatos.getColumnLabel(i + 1);
 
 		}
 		model.setColumnIdentifiers(etiquetas);
 		model.setRowCount(0);
-// Bucle para cada resultado en la consulta
+		// Bucle para cada resultado en la consulta
 		while (res.next()) {
-// Se crea un array que será una de las filas de la tabla.
+			// Se crea un array que será una de las filas de la tabla.
 			Object[] fila = new Object[numeroColumnas]; // Hay tres columnas en la tabla
 
-// Se rellena cada posición del array con una de las columnas de la tabla en
-// base de datos.
+			// Se rellena cada posición del array con una de las columnas de la tabla en
+			// base de datos.
 			for (int i = 0; i < numeroColumnas; i++)
 				fila[i] = res.getObject(i + 1); // El primer indice en rs es el 1, no el cero, por eso se suma 1.
 
-// Se añade al modelo la fila completa.
+			// Se añade al modelo la fila completa.
 			model.addRow(fila);
 		}
 	}

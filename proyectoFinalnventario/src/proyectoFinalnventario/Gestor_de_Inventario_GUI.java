@@ -56,7 +56,7 @@ public class Gestor_de_Inventario_GUI {
 		frmGestorDeInventario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGestorDeInventario.getContentPane().setLayout(null);
 		
-		conexion = new Conexion("jdbc:mysql://localhost:3306/inventario", "root", "password");
+		conexion = new Conexion("jdbc:mysql://localhost:3306/inventario", "root", "administrador");
 		try {
 			conexion.conectar();
 		} catch (SQLException e) {
@@ -112,7 +112,7 @@ public class Gestor_de_Inventario_GUI {
 		Consulta_boton.setBounds(152, 115, 132, 135);
 		Consulta_boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			Consulta cons = new Consulta();
+			Consulta cons = new Consulta(conexion);
 			cons.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			cons.setVisible(true);
 			

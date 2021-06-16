@@ -34,7 +34,7 @@ public class Conexion {
 	public ResultSet consultar(String columna, String tabla, String valor) throws SQLException {
 		try {
 			statement = connect.createStatement();
-			rs = statement.executeQuery("select");
+			rs = statement.executeQuery("select " + columna + " from " + tabla + " where " + valor);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

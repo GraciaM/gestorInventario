@@ -1,6 +1,7 @@
 package proyectoFinalnventario;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Conexion {
 
@@ -8,6 +9,12 @@ public class Conexion {
 	private String user;
 	private String password;
 	private Connection connect;
+	private Statement statement;
+	private ResultSet rs;
+	
+	public Conexion() {
+		
+	}
 	
 	public Conexion(String url, String user, String password) {
 		this.url = url;
@@ -18,19 +25,29 @@ public class Conexion {
 	public void conectar() throws SQLException {
 		try {
 			connect = DriverManager.getConnection(this.url, this.user, this.password);
-			Statement statement = connect.createStatement();
+			statement = connect.createStatement();
 		}
 		catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 	
-	public void consultar(String instruccion) throws SQLException {
+	public void consultar(String columna, String tabla, String valor) throws SQLException {
 		try {
-			Statement statement = connect.createStatement();
-			ResultSet rs = statement.executeQuery(instruccion);
+			statement = connect.createStatement();
+			rs = statement.executeQuery("select");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void mostrarTabla(String tabla) throws SQLException {
+		try {
+			statement = connect.createStatement();
+			rs = statement.executeQuery("Select * from " + tabla);
 			while (rs.next()) {
-				for (int i = 0; i<rs.getMetaData().getColumnCount(); i++) {
+				for (int i = 1; i<=rs.getMetaData().getColumnCount(); i++) {
 						System.out.println(rs.getString(i) + ", ");
 				}
 			}
@@ -40,10 +57,19 @@ public class Conexion {
 		}
 	}
 	
-	public void insertar(String registro) throws SQLException {
+	public void insertar(String columna, String tabla) throws SQLException {
 		try {
 			PreparedStatement preparedStatement = connect
-					.prepareStatement(registro);
+					.prepareStatement("Insert into" + columna +" from" + tabla);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void borrar(String columna, String tabla, String valor) throws SQLException {
+		try {
+			PreparedStatement prepraredStatement = connect
+					.prepareStatement("Delete " + columna + " from " + tabla + " where " + valor);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

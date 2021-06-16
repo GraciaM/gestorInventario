@@ -11,12 +11,14 @@ import javax.swing.JButton;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 
 import javax.swing.ImageIcon;
 
 public class Gestor_de_Inventario_GUI {
 
 	private JFrame frmGestorDeInventario;
+	static Conexion conexion;
 
 	/**
 	 * Launch the application.
@@ -36,21 +38,31 @@ public class Gestor_de_Inventario_GUI {
 
 	/**
 	 * Create the application.
+	 * @throws SQLException 
 	 */
-	public Gestor_de_Inventario_GUI() {
+	public Gestor_de_Inventario_GUI() throws SQLException {
 		initialize();
 	}
 
 	/**
 	 * Initialize the contents of the frame.
+	 * @throws SQLException 
 	 */
-	private void initialize() {
+	private void initialize() throws SQLException {
 		frmGestorDeInventario = new JFrame();
-		frmGestorDeInventario.setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\FP\\Programaci\u00F3n\\Proyecto_inventario\\inventario.png"));
+		frmGestorDeInventario.setIconImage(Toolkit.getDefaultToolkit().getImage("img/inventario.png"));
 		frmGestorDeInventario.setTitle("Gestor de inventario SERTECCO");
 		frmGestorDeInventario.setBounds(100, 100, 450, 300);
 		frmGestorDeInventario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGestorDeInventario.getContentPane().setLayout(null);
+		
+		conexion = new Conexion("jdbc:mysql://localhost:3306/inventario", "root", "administrador");
+		try {
+			conexion.conectar();
+		} catch (SQLException e) {
+			System.out.println(e);
+			e.printStackTrace();
+		}
 		
 		JLabel Registro_texto = new JLabel("Registro");
 		Registro_texto.setHorizontalAlignment(SwingConstants.CENTER);
@@ -78,21 +90,20 @@ public class Gestor_de_Inventario_GUI {
 		frmGestorDeInventario.getContentPane().add(Título_texto);
 		
 		JButton Registro_boton = new JButton("");
-		Registro_boton.setIcon(new ImageIcon("D:\\FP\\Programaci\u00F3n\\Proyecto_inventario\\Registro.png"));
+		Registro_boton.setIcon(new ImageIcon("img/Registro.png"));
 		Registro_boton.setBounds(10, 115, 132, 135);
 		Registro_boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Registro rg = new Registro();
-				rg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				Registro rg = new Registro(conexion);
 				rg.setVisible(true);
-				
+				rg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				
 			}
 		});
 		frmGestorDeInventario.getContentPane().add(Registro_boton);
 		
 		JButton Consulta_boton = new JButton("");
-		Consulta_boton.setIcon(new ImageIcon("D:\\FP\\Programaci\u00F3n\\Proyecto_inventario\\Consulta.png"));
+		Consulta_boton.setIcon(new ImageIcon("img/Consulta.png"));
 		Consulta_boton.setBounds(152, 115, 132, 135);
 		Consulta_boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -106,7 +117,7 @@ public class Gestor_de_Inventario_GUI {
 		frmGestorDeInventario.getContentPane().add(Consulta_boton);
 		
 		JButton Pedidos_boton = new JButton("");
-		Pedidos_boton.setIcon(new ImageIcon("D:\\FP\\Programaci\u00F3n\\Proyecto_inventario\\Pedidos.png"));
+		Pedidos_boton.setIcon(new ImageIcon("img/Pedidos.png"));
 		Pedidos_boton.setBounds(292, 115, 132, 135);
 		Pedidos_boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

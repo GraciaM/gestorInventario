@@ -94,10 +94,15 @@ public class Gestor_de_Inventario_GUI {
 		Registro_boton.setBounds(10, 115, 132, 135);
 		Registro_boton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Registro rg = new Registro(conexion);
-				rg.setVisible(true);
-				rg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-				
+				Registro rg;
+				try {
+					rg = new Registro(conexion);
+					rg.setVisible(true);
+					rg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		});
 		frmGestorDeInventario.getContentPane().add(Registro_boton);

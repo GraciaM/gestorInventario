@@ -102,7 +102,6 @@ public class Gestor_de_Inventario_GUI {
 					rg.setVisible(true);
 					rg.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 				} catch (SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}

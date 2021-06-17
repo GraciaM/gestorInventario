@@ -33,6 +33,7 @@ public class Pedidos extends JFrame implements Serializable {
 	 * Create the frame.
 	 */
 	public Pedidos() {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/Pedidos.png"));
 		setTitle("Pedidos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -41,6 +42,12 @@ public class Pedidos extends JFrame implements Serializable {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel Identificador = new JLabel("Identificate:");
+		Identificador.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 30));
+		Identificador.setHorizontalAlignment(SwingConstants.CENTER);
+		Identificador.setBounds(50, 28, 334, 47);
+		contentPane.add(Identificador);
 
 		// Botón para conectarse como Servidor.
 		Server = new JButton("Administrador");
@@ -56,7 +63,8 @@ public class Pedidos extends JFrame implements Serializable {
 
 			}
 		});
-
+		
+		// Botón para conectarse como Cliente.
 		Client = new JButton("Proveedor");
 		Client.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 15));
 		Client.setBounds(233, 85, 193, 142);
@@ -70,13 +78,5 @@ public class Pedidos extends JFrame implements Serializable {
 
 			}
 		});
-		
-		JLabel Identificador = new JLabel("Identificate:");
-		Identificador.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 30));
-		Identificador.setHorizontalAlignment(SwingConstants.CENTER);
-		Identificador.setBounds(50, 28, 334, 47);
-		contentPane.add(Identificador);
-		
-		
 	}
 }

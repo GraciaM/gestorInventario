@@ -43,43 +43,43 @@ public class Consulta extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
+
 		JLabel Buscar = new JLabel("Buscar por");
 		Buscar.setBounds(10, 18, 96, 25);
 		contentPane.add(Buscar);
-		
+
 		JComboBox busquedas = new JComboBox();
 		busquedas.setBounds(80, 11, 96, 38);
 		contentPane.add(busquedas);
 		busquedas.addItem("Referencia");
 		busquedas.addItem("Nombre");
 		busquedas.addItem("Familia");
-		
+
 		campoBusqueda = new JTextField();
 		campoBusqueda.setBounds(10, 56, 166, 20);
 		contentPane.add(campoBusqueda);
 		campoBusqueda.setColumns(30);
-		
-		JButton btnNewButton = new JButton("Buscar");
-		btnNewButton.addActionListener(new ActionListener() {
+
+		JButton btn_Buscar = new JButton("Buscar");
+		btn_Buscar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String valor = campoBusqueda.getText();
 				String condicion = "";
 				try {
 					switch (busquedas.getSelectedItem().toString()) {
 					case "Referencia":
-						condicion = "id = '";
-						condicion+= valor + "'";
-						mostrarConsulta("*", "pieza", condicion);
+						condicion = "id_pieza = '";
+						condicion += valor + "'";
+						mostrarConsulta("*", "pieza_ubicacion", condicion);
 						break;
 					case "Nombre":
 						condicion = "nombre = '";
-						condicion+= valor + "'";
-						mostrarConsulta("*", "pieza", condicion);
+						condicion += valor + "' and pieza.id = id_pieza";
+						mostrarConsulta("*", "pieza, pieza_ubicacion", condicion);
 						break;
 					case "Familia":
 						condicion = "familia.nombre = '";
-						condicion+= valor + "' and familia.nombre = nombrefamilia";
+						condicion += valor + "' and familia.nombre = nombrefamilia";
 						mostrarConsulta("*", "pieza, familia, producto", condicion);
 						break;
 					}
@@ -88,20 +88,31 @@ public class Consulta extends JFrame {
 				}
 			}
 		});
-		btnNewButton.setBounds(186, 55, 89, 23);
-		contentPane.add(btnNewButton);
-		
+		btn_Buscar.setBounds(186, 55, 89, 23);
+		contentPane.add(btn_Buscar);
+
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 87, 414, 163);
 		contentPane.add(scrollPane);
-		
+
 		table = new JTable(model);
 		scrollPane.setViewportView(table);
-		/*table.setBounds(10, 87, 414, 163);
-		contentPane.add(table);*/
+
+		JButton btn_Borrar = new JButton("Borrar");
+		btn_Borrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				campoBusqueda.setText("");
+			}
+		});
+		btn_Borrar.setBounds(285, 55, 89, 23);
+		contentPane.add(btn_Borrar);
+		/*
+		 * table.setBounds(10, 87, 414, 163); contentPane.add(table);
+		 */
 
 	}
+
 	public void mostrarConsulta(String columna, String tabla, String condicion) throws SQLException {
 		ResultSet res = conexion.consultar(columna, tabla, condicion);
 

@@ -5,7 +5,7 @@ public class Pieza_costo {
 	private String referencia;
 	private String CIF;
 	private int precioCosto;
-	
+
 	public Pieza_costo(String referencia, String CIF, int precioCosto) {
 		this.referencia = referencia;
 		this.CIF = CIF;
@@ -35,5 +35,5 @@ public class Pieza_costo {
 	public void setPrecioCosto(int precioCosto) {
 		this.precioCosto = precioCosto;
 	}
-	
+
 }

@@ -57,10 +57,20 @@ public class Conexion {
 		return res;
 	}
 
-	public void insertar(int columna, String tabla) throws SQLException {
+	public void insertar(String tabla, ArrayList<String> valores) throws SQLException {
 		try {
 
-			PreparedStatement preparedStatement = connect.prepareStatement("Insert into" + tabla + " values" + columna);
+			// PreparedStatement preparedStatement = connect.prepareStatement("Insert into"
+			// + tabla + " values (?, ?)");
+			String valores_array = "";
+			for (int i = 0; i<valores.size()-1; i++) {
+				valores_array+= "'"+valores.get(i)+"', ";
+			}
+			valores_array+= "'"+ valores.get(valores.size()-1) +"'";
+			PreparedStatement preparedStatement = connect
+					.prepareStatement("insert into " + tabla + " values " + "(" + valores_array + ")");
+					//.prepareStatement("Insert into " + tabla + " values ('" + indice + "', '" + valor + "')");
+			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

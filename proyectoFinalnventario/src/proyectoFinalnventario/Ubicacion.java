@@ -4,7 +4,7 @@ public class Ubicacion {
 
 	private String estanteria;
 	private String estante;
-	
+
 	public Ubicacion(String estanteria, String estante) {
 		this.estanteria = estanteria;
 		this.estante = estante;
@@ -25,5 +25,5 @@ public class Ubicacion {
 	public void setEstante(String estante) {
 		this.estante = estante;
 	}
-	
+
 }

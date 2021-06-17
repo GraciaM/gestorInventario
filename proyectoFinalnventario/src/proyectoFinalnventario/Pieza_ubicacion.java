@@ -5,7 +5,7 @@ public class Pieza_ubicacion {
 	private String referencia;
 	private String estanteria;
 	private String estante;
-	
+
 	public Pieza_ubicacion(String referencia, String estanteria, String estante) {
 		this.referencia = referencia;
 		this.estanteria = estanteria;
@@ -35,5 +35,5 @@ public class Pieza_ubicacion {
 	public void setEstante(String estante) {
 		this.estante = estante;
 	}
-	
+
 }

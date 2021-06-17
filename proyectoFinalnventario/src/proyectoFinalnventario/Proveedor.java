@@ -1,5 +1,7 @@
 package proyectoFinalnventario;
 
+import java.io.Serializable;
+
 public class Proveedor {
 
 	private String CIF;
@@ -8,7 +10,7 @@ public class Proveedor {
 	private String ciudad;
 	private int telefono;
 	private String email;
-	
+
 	public Proveedor(String CIF, String empresa) {
 		this.CIF = CIF;
 		this.empresa = empresa;
@@ -25,7 +27,7 @@ public class Proveedor {
 	public String getDireccion() {
 		return direccion;
 	}
-	
+
 	public String getCiudad() {
 		return ciudad;
 	}
@@ -49,7 +51,7 @@ public class Proveedor {
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
+
 	public void setCiudad(String ciudad) {
 		this.ciudad = ciudad;
 	}
@@ -67,5 +69,5 @@ public class Proveedor {
 		return "Proveedor [CIF=" + CIF + ", empresa=" + empresa + ", direccion=" + direccion + ", ciudad=" + ciudad
 				+ ", telefono=" + telefono + ", email=" + email + "]";
 	}
-	
+
 }

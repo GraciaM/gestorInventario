@@ -5,7 +5,7 @@ public class Stock {
 	private String referencia;
 	private int numStock;
 	private int stockPrestado;
-	
+
 	public Stock(String referencia, int numStock) {
 		this.numStock = numStock;
 	}
@@ -29,5 +29,5 @@ public class Stock {
 	public void setStockPrestado(int stockPrestado) {
 		this.stockPrestado = stockPrestado;
 	}
-	
+
 }

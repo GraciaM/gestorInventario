@@ -7,7 +7,7 @@ public class Producto {
 	private int medida;
 	private String color;
 	private String familia;
-	
+
 	public Producto(String marca, String modelo) {
 		this.marca = marca;
 		this.modelo = modelo;
@@ -20,7 +20,7 @@ public class Producto {
 	public String getModelo() {
 		return modelo;
 	}
-	
+
 	public int getMedida() {
 		return medida;
 	}
@@ -28,7 +28,7 @@ public class Producto {
 	public String getColor() {
 		return color;
 	}
-	
+
 	public String getFamilia() {
 		return familia;
 	}
@@ -48,7 +48,7 @@ public class Producto {
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
+
 	public void setFamilia(String familia) {
 		this.familia = familia;
 	}
@@ -57,5 +57,5 @@ public class Producto {
 	public String toString() {
 		return "Producto [marca=" + marca + ", modelo=" + modelo + ", medida=" + medida + ", color=" + color + "]";
 	}
-	
+
 }

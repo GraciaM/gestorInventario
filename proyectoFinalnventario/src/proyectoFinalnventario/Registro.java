@@ -39,7 +39,7 @@ public class Registro extends JFrame {
 	private JTextField Ciudad;
 	private JTextField Email;
 	private JTextField Telefono;
-	static Conexion conexion;
+	private Conexion conexion;
 	private JTable table;
 	private DefaultTableModel model = new DefaultTableModel();
 	private JTextField textField;
@@ -62,6 +62,7 @@ public class Registro extends JFrame {
 		contentPane.setLayout(null);
 
 		JComboBox Opciones = new JComboBox();
+		JButton Insertar = new JButton("Insertar");
 
 		Opciones.setBounds(10, 11, 157, 62);
 		contentPane.add(Opciones);
@@ -69,21 +70,26 @@ public class Registro extends JFrame {
 		Opciones.addItem("Pieza");
 		Opciones.addItem("Electrodomestico");
 		Opciones.addItem("Producto");
+		mostrarEnInterfaz("proveedor");
 		Opciones.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
 				try {
 					switch (Opciones.getSelectedItem().toString()) {
 					case "Proveedor":
 						mostrarEnInterfaz("proveedor");
+						Insertar.setEnabled(true);
 						break;
 					case "Pieza":
 						mostrarEnInterfaz("pieza");
+						Insertar.setEnabled(true);
 						break;
 					case "Electrodomestico":
 						mostrarEnInterfaz("familia");
+						Insertar.setEnabled(false);
 						break;
 					case "Producto":
 						mostrarEnInterfaz("pieza_pertenece_Producto");
+						Insertar.setEnabled(false);
 						break;
 					}
 				} catch (SQLException e) {
@@ -100,28 +106,25 @@ public class Registro extends JFrame {
 		table = new JTable(model);
 		scrollPane.setViewportView(table);
 
-		JButton Insertar = new JButton("Insertar");
 		Insertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				switch (Opciones.getSelectedItem().toString()) {
 				case "Proveedor":
-					Insertar_Proveedor insertarPro = new Insertar_Proveedor();
+					Insertar_Proveedor insertarPro = new Insertar_Proveedor(conexion);
 					insertarPro.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					insertarPro.setVisible(true);
 					break;
 				case "Pieza":
-					Insertar_Pieza insertarProd = new Insertar_Pieza();
+					Insertar_Pieza insertarProd = new Insertar_Pieza(conexion);
 					insertarProd.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 					insertarProd.setVisible(true);
 					break;
 				}
-				
 			}
 		});
 		Insertar.setBounds(318, 13, 287, 60);
 		contentPane.add(Insertar);
-		
-		
+
 	}
 
 	public void mostrarEnInterfaz(String tabla) throws SQLException {

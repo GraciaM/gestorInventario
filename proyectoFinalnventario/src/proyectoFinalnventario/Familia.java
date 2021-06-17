@@ -4,7 +4,7 @@ public class Familia {
 
 	private String nombre;
 	private String descripcion;
-	
+
 	public Familia(String nombre) {
 		this.nombre = nombre;
 	}
@@ -24,9 +24,9 @@ public class Familia {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	
+
 	public String toString() {
 		return nombre + "\nDescripcion: " + descripcion;
 	}
-	
+
 }

@@ -63,13 +63,14 @@ public class Conexion {
 			// PreparedStatement preparedStatement = connect.prepareStatement("Insert into"
 			// + tabla + " values (?, ?)");
 			String valores_array = "";
-			for (int i = 0; i<valores.size()-1; i++) {
-				valores_array+= "'"+valores.get(i)+"', ";
+			for (int i = 0; i < valores.size() - 1; i++) {
+				valores_array += "'" + valores.get(i) + "', ";
 			}
-			valores_array+= "'"+ valores.get(valores.size()-1) +"'";
+			valores_array += "'" + valores.get(valores.size() - 1) + "'";
 			PreparedStatement preparedStatement = connect
 					.prepareStatement("insert into " + tabla + " values " + "(" + valores_array + ")");
-					//.prepareStatement("Insert into " + tabla + " values ('" + indice + "', '" + valor + "')");
+			// .prepareStatement("Insert into " + tabla + " values ('" + indice + "', '" +
+			// valor + "')");
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -77,11 +78,13 @@ public class Conexion {
 		}
 	}
 
-	/*
-	 * public void borrar(String columna, String tabla, String valor) throws
-	 * SQLException { try { PreparedStatement prepraredStatement = connect
-	 * .prepareStatement("Delete " + columna + " from " + tabla + " where " +
-	 * valor); } catch (SQLException e) { e.printStackTrace(); } }
-	 */
+	public void borrar(String tabla, String valor) throws SQLException {
+		try {
+			PreparedStatement preparedStatement = connect.prepareStatement("Delete from " + tabla + " where " + valor);
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 }

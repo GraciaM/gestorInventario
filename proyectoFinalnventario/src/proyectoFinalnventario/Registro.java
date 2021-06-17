@@ -122,10 +122,31 @@ public class Registro extends JFrame {
 				}
 			}
 		});
-		Insertar.setBounds(318, 13, 287, 60);
+		Insertar.setBounds(206, 12, 188, 60);
 		contentPane.add(Insertar);
+		
+		JButton Borrar = new JButton("Borrar");
+		Borrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			try {
+			String valor = table.getColumnName(1) + "= '" + table.getValueAt(table.getSelectedRow(), 1) + "'";
+			conexion.borrar(Opciones.getSelectedItem().toString(), valor);
+			} catch (SQLException e) {
+			e.printStackTrace();
+			}
+			}
+			});
+		Borrar.setBounds(419, 13, 188, 60);
+		contentPane.add(Borrar);
+		
+		
+		
+		
+
+
 
 	}
+	
 
 	public void mostrarEnInterfaz(String tabla) throws SQLException {
 		ResultSet res = conexion.mostrarTabla(tabla);

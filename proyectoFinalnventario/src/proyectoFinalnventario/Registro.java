@@ -55,7 +55,7 @@ public class Registro extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img\\Registro.png"));
 		setTitle("Registro");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 631, 525);
+		setBounds(100, 100, 924, 521);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,7 +100,7 @@ public class Registro extends JFrame {
 		});
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 84, 595, 391);
+		scrollPane.setBounds(10, 84, 888, 391);
 		contentPane.add(scrollPane);
 
 		table = new JTable(model);
@@ -122,7 +122,7 @@ public class Registro extends JFrame {
 				}
 			}
 		});
-		Insertar.setBounds(206, 12, 188, 60);
+		Insertar.setBounds(512, 12, 188, 60);
 		contentPane.add(Insertar);
 		
 		JButton Borrar = new JButton("Borrar");
@@ -136,14 +136,8 @@ public class Registro extends JFrame {
 			}
 			}
 			});
-		Borrar.setBounds(419, 13, 188, 60);
+		Borrar.setBounds(710, 12, 188, 60);
 		contentPane.add(Borrar);
-		
-		
-		
-		
-
-
 
 	}
 	

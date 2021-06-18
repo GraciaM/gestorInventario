@@ -60,8 +60,8 @@ public class Pedido implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Pedido [referencia=" + referencia + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio_unidad="
-				+ precio_unidad + "]";
+		return "PEDIDO SERTECCO \nReferencia: " + referencia + ", Nombre: " + nombre + ", Cantidad: " + cantidad + ", Precio de unidad: "
+				+ precio_unidad+" Precio total: "+this.getPrecio_total();
 	}
 
 }

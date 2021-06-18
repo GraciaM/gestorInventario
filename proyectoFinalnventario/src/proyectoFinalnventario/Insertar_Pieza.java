@@ -69,10 +69,6 @@ public class Insertar_Pieza extends JFrame {
 					valores.add(textField_Descripcion.getText());
 					valores.add(textField_Ciudad.getText());
 					conexion.insertar(tabla, valores);
-					/*conexion.insertar(tabla, 1, textField_ID.getText());
-					conexion.insertar(tabla, 2, textField_Nombre.getText());
-					conexion.insertar(tabla, 3, textField_Descripcion.getText());
-					conexion.insertar(tabla, 4, textField_Ciudad.getText());*/
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}

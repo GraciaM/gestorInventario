@@ -34,11 +34,11 @@ public class Cliente_ventana extends JFrame {
 	private String port;
 	private String server;
 	private JTextField Pedidos;
-	private JTextField Coste_pedido;
 	private Socket socket;
 	private ObjectInputStream perEnt;
 	private ObjectOutputStream perSal;
 	private Pedido dato;
+	static JButton Confirmar = new JButton("Confirmar");
 
 	/**
 	 * Create the frame.
@@ -46,21 +46,25 @@ public class Cliente_ventana extends JFrame {
 	public Cliente_ventana() {
 		setTitle("Confirmar pedidos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 519, 630);
+		setBounds(100, 100, 697, 434);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(10, 55, 661, 87);
+		contentPane.add(scrollPane_1);
 
 		Pedidos = new JTextField();
-		Pedidos.setBounds(10, 70, 485, 63);
-		contentPane.add(Pedidos);
-		Pedidos.setColumns(10);
+		scrollPane_1.setViewportView(Pedidos);
+		Pedidos.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		Pedidos.setColumns(30);
 
 		JButton conectar = new JButton("Conectar con Sertecco");
 		conectar.setForeground(new Color(0, 206, 209));
 		conectar.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 20));
-		conectar.setBounds(137, 10, 358, 50);
+		conectar.setBounds(313, 9, 358, 35);
 		contentPane.add(conectar);
 		conectar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -90,20 +94,9 @@ public class Cliente_ventana extends JFrame {
 			}
 		});
 
-		JLabel lblPrecioFinalDel = new JLabel("Precio final del pedido");
-		lblPrecioFinalDel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPrecioFinalDel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 21));
-		lblPrecioFinalDel.setBounds(132, 540, 225, 38);
-		contentPane.add(lblPrecioFinalDel);
-
-		Coste_pedido = new JTextField();
-		Coste_pedido.setColumns(10);
-		Coste_pedido.setBounds(367, 540, 128, 43);
-		contentPane.add(Coste_pedido);
-
 		JPanel panel = new JPanel();
 		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(44, 236, 415, 284);
+		panel.setBounds(10, 187, 661, 197);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -113,33 +106,29 @@ public class Cliente_ventana extends JFrame {
 		panel.add(Confirmacion_prov);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(20, 53, 372, 215);
+		scrollPane.setBounds(20, 53, 631, 136);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		panel.add(scrollPane);
 
 		JTextArea textArea = new JTextArea();
-		textArea.setRows(16);
+		textArea.setRows(10);
 		scrollPane.setColumnHeaderView(textArea);
-		textArea.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		textArea.setColumns(15);
+		textArea.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 13));
+		textArea.setColumns(50);
 
 		JLabel lblPedidos = new JLabel("Pedidos:");
 		lblPedidos.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 18));
-		lblPedidos.setBounds(10, 25, 275, 35);
+		lblPedidos.setBounds(10, 10, 275, 35);
 		contentPane.add(lblPedidos);
 		
-		JButton Confirmar = new JButton("Confirmar");
+		//Confirmar = new JButton("Confirmar");
 		Confirmar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				try {
-					textArea.setText("Confirmado: \n" + dato.toString());
-					perSal.writeObject(dato);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				textArea.setText("Confirmado: \n" + dato.toString());
+				//perSal.writeObject(dato);
 			}
 		});
-		Confirmar.setBounds(10, 144, 111, 35);
+		Confirmar.setBounds(10, 153, 92, 23);
 		contentPane.add(Confirmar);
 
 // CERRAR STREAMS Y SOCKETS

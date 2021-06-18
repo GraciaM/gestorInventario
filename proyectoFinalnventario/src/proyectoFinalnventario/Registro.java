@@ -63,6 +63,7 @@ public class Registro extends JFrame {
 
 		JComboBox Opciones = new JComboBox();
 		JButton Insertar = new JButton("Insertar");
+		JButton Borrar = new JButton("Borrar");
 
 		Opciones.setBounds(10, 11, 157, 62);
 		contentPane.add(Opciones);
@@ -78,18 +79,22 @@ public class Registro extends JFrame {
 					case "Proveedor":
 						mostrarEnInterfaz("proveedor");
 						Insertar.setEnabled(true);
+						Borrar.setEnabled(true);
 						break;
 					case "Pieza":
 						mostrarEnInterfaz("pieza");
 						Insertar.setEnabled(true);
+						Borrar.setEnabled(true);
 						break;
 					case "Electrodomestico":
 						mostrarEnInterfaz("familia");
 						Insertar.setEnabled(false);
+						Borrar.setEnabled(false);
 						break;
 					case "Producto":
 						mostrarEnInterfaz("pieza_pertenece_Producto");
 						Insertar.setEnabled(false);
+						Borrar.setEnabled(false);
 						break;
 					}
 				} catch (SQLException e) {
@@ -125,7 +130,6 @@ public class Registro extends JFrame {
 		Insertar.setBounds(512, 12, 188, 60);
 		contentPane.add(Insertar);
 		
-		JButton Borrar = new JButton("Borrar");
 		Borrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			try {

@@ -44,8 +44,6 @@ public class Servidor_ventana extends JFrame {
 	private JLabel lblCantidad;
 	private JLabel lblPrecio;
 	private JLabel lblTotal;
-	private JPanel panel;
-	private JTextField textField;
 	private ServerSocket server;
 	private Socket cliente;
 	private ObjectOutputStream outObjeto;
@@ -58,7 +56,7 @@ public class Servidor_ventana extends JFrame {
 	public Servidor_ventana() {
 		setTitle("Hacer pedido");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 658);
+		setBounds(100, 100, 450, 357);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -99,7 +97,7 @@ public class Servidor_ventana extends JFrame {
 
 		Precio_Total = new JTextField();
 		Precio_Total.setColumns(10);
-		Precio_Total.setBounds(110, 235, 118, 36);
+		Precio_Total.setBounds(110, 248, 109, 36);
 		contentPane.add(Precio_Total);
 
 		Precio_Unidad = new JTextField();
@@ -131,7 +129,6 @@ public class Servidor_ventana extends JFrame {
 
 					outObjeto = new ObjectOutputStream(cliente.getOutputStream());
 // mandamos un objeto pedido
-					System.out.println(Precio_Unidad.getText());
 					double precio_ud = Double.valueOf(Precio_Unidad.getText());
 					ped = new Pedido(Referencia.getText(), Nombre.getText(), (int) Cantidad.getValue(),
 							precio_ud);
@@ -176,46 +173,8 @@ public class Servidor_ventana extends JFrame {
 		lblTotal = new JLabel("Total");
 		lblTotal.setHorizontalAlignment(SwingConstants.LEFT);
 		lblTotal.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 18));
-		lblTotal.setBounds(10, 233, 128, 38);
+		lblTotal.setBounds(10, 244, 128, 38);
 		contentPane.add(lblTotal);
-
-		panel = new JPanel();
-		panel.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		panel.setBounds(10, 281, 405, 277);
-		contentPane.add(panel);
-		panel.setLayout(null);
-
-		JLabel Confirmacion_prov = new JLabel("Confirmaci\u00F3n de pedidos:");
-		Confirmacion_prov.setFont(new Font("Microsoft YaHei UI Light", Font.BOLD, 18));
-		Confirmacion_prov.setBounds(10, 10, 275, 35);
-		panel.add(Confirmacion_prov);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(20, 53, 372, 214);
-		panel.add(scrollPane);
-
-		JTextArea textArea = new JTextArea();
-		scrollPane.setViewportView(textArea);
-		textArea.setColumns(10);
-		textArea.setFont(new Font("Tahoma", Font.PLAIN, 10));
-		/*try {
-			inObjeto = new ObjectInputStream( cliente.getInputStream());
-			textArea.setText(inObjeto.toString());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
-
-		JLabel lblPrecioFinalDel = new JLabel("Precio final del pedido");
-		lblPrecioFinalDel.setHorizontalAlignment(SwingConstants.LEFT);
-		lblPrecioFinalDel.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 21));
-		lblPrecioFinalDel.setBounds(20, 568, 225, 38);
-		contentPane.add(lblPrecioFinalDel);
-
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(255, 568, 128, 43);
-		contentPane.add(textField);
 
 // CERRAR STREAMS Y SOCKETS
 		/*

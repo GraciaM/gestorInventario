@@ -27,6 +27,8 @@ import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
 
 public class Servidor_ventana extends JFrame {
 
@@ -48,6 +50,7 @@ public class Servidor_ventana extends JFrame {
 	private Socket cliente;
 	private ObjectOutputStream outObjeto;
 	private ObjectInputStream inObjeto;
+	private Pedido ped;
 
 	/**
 	 * Create the frame.
@@ -91,7 +94,7 @@ public class Servidor_ventana extends JFrame {
 
 		Nombre = new JTextField();
 		Nombre.setColumns(10);
-		Nombre.setBounds(110, 100, 305, 38);
+		Nombre.setBounds(110, 96, 305, 38);
 		contentPane.add(Nombre);
 
 		Precio_Total = new JTextField();
@@ -101,12 +104,24 @@ public class Servidor_ventana extends JFrame {
 
 		Precio_Unidad = new JTextField();
 		Precio_Unidad.setColumns(10);
-		Precio_Unidad.setBounds(110, 190, 96, 38);
+		Precio_Unidad.setBounds(110, 145, 96, 38);
 		contentPane.add(Precio_Unidad);
-
+		
 		JSpinner Cantidad = new JSpinner();
+		
+		
+		Cantidad.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent arg0) {
+				ped = new Pedido();
+				ped.setReferencia(Referencia.getText());
+				ped.setNombre(Nombre.getText());
+				ped.setCantidad((int) Cantidad.getValue());
+				ped.setPrecio(Double.parseDouble(Precio_Unidad.getText()));
+				Precio_Total.setText(String.valueOf(ped.getPrecio_total()));
+			}
+		});
 		Cantidad.setFont(new Font("Tahoma", Font.BOLD, 15));
-		Cantidad.setBounds(110, 142, 96, 44);
+		Cantidad.setBounds(110, 194, 96, 44);
 		contentPane.add(Cantidad);
 
 		Hacer_Pedido = new JButton("Pedir");
@@ -118,9 +133,10 @@ public class Servidor_ventana extends JFrame {
 // mandamos un objeto pedido
 					System.out.println(Precio_Unidad.getText());
 					double precio_ud = Double.valueOf(Precio_Unidad.getText());
-					Pedido ped = new Pedido(Referencia.getText(), Nombre.getText(), (int) Cantidad.getValue(),
+					ped = new Pedido(Referencia.getText(), Nombre.getText(), (int) Cantidad.getValue(),
 							precio_ud);
 					outObjeto.writeObject(ped);
+					Precio_Total.setText(String.valueOf(ped.getPrecio_total()));
 
 
 				} catch (IOException e) {
@@ -148,13 +164,13 @@ public class Servidor_ventana extends JFrame {
 		lblCantidad = new JLabel("Cantidad");
 		lblCantidad.setHorizontalAlignment(SwingConstants.LEFT);
 		lblCantidad.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 18));
-		lblCantidad.setBounds(10, 148, 128, 38);
+		lblCantidad.setBounds(10, 195, 128, 38);
 		contentPane.add(lblCantidad);
 
 		lblPrecio = new JLabel("Precio");
 		lblPrecio.setHorizontalAlignment(SwingConstants.LEFT);
 		lblPrecio.setFont(new Font("Microsoft YaHei UI Light", Font.PLAIN, 18));
-		lblPrecio.setBounds(10, 190, 128, 38);
+		lblPrecio.setBounds(10, 145, 128, 38);
 		contentPane.add(lblPrecio);
 
 		lblTotal = new JLabel("Total");

@@ -38,7 +38,7 @@ public class Consulta extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("img/Consulta.png"));
 		setTitle("Consulta");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 956, 456);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -79,8 +79,8 @@ public class Consulta extends JFrame {
 						break;
 					case "Familia":
 						condicion = "familia.nombre = '";
-						condicion += valor + "' and familia.nombre = nombrefamilia";
-						mostrarConsulta("*", "pieza, familia, producto", condicion);
+						condicion += valor + "' and familia.nombre = producto.nombrefamilia and producto.modelo = pieza_pertenece_producto.modeloproducto";
+						mostrarConsulta("familia.*, pieza_pertenece_producto.*", "familia, producto, Pieza_pertenece_Producto", condicion);
 						break;
 					}
 				} catch (SQLException e) {
@@ -93,7 +93,7 @@ public class Consulta extends JFrame {
 
 		JScrollPane scrollPane = new JScrollPane(table);
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 87, 414, 163);
+		scrollPane.setBounds(10, 87, 920, 319);
 		contentPane.add(scrollPane);
 
 		table = new JTable(model);

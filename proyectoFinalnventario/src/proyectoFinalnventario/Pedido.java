@@ -1,6 +1,8 @@
 package proyectoFinalnventario;
 
-public class Pedido {
+import java.io.Serializable;
+
+public class Pedido implements Serializable {
 
 	private String referencia;
 	private String nombre;
@@ -54,6 +56,12 @@ public class Pedido {
 
 	public void setPrecio(double precio_unidad) {
 		this.precio_unidad = precio_unidad;
+	}
+
+	@Override
+	public String toString() {
+		return "Pedido [referencia=" + referencia + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio_unidad="
+				+ precio_unidad + "]";
 	}
 
 }

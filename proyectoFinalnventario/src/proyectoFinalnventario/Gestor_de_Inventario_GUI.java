@@ -58,7 +58,7 @@ public class Gestor_de_Inventario_GUI {
 		frmGestorDeInventario.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmGestorDeInventario.getContentPane().setLayout(null);
 
-		conexion = new Conexion("jdbc:mysql://localhost:3306/inventario", "root", "password");
+		conexion = new Conexion("jdbc:mysql://localhost:3306/inventario", "root", "administrador");
 		try {
 			conexion.conectar();
 		} catch (SQLException e) {
